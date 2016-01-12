@@ -1,0 +1,111 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p58000000nnNYAAY",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p58000000nnNYAAY",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testCreateControls",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "ControlCreatorHelperTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 27,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod",
+            "with sharing"
+        ],
+        "name": "ControlCreatorHelperTest",
+        "references": [],
+        "type": "ControlCreatorHelperTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 4
+            },
+            "modifiers": [],
+            "name": "parent",
+            "references": [],
+            "type": "grc__Business_Unit__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 8
+            },
+            "modifiers": [],
+            "name": "usr",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 16
+            },
+            "modifiers": [],
+            "name": "risk1",
+            "references": [],
+            "type": "grc__Risk__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 28
+            },
+            "modifiers": [],
+            "name": "controls",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "lookups",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

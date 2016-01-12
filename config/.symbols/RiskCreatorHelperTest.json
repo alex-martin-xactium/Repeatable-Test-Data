@@ -1,0 +1,89 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p58000000nnNOAAY",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p58000000nnNOAAY",
+    "methods": [
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 22,
+                "line": 3
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testCreateRisks",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "RiskCreatorHelperTest",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 27,
+            "line": 2
+        },
+        "modifiers": [
+            "public",
+            "testMethod",
+            "with sharing"
+        ],
+        "name": "RiskCreatorHelperTest",
+        "references": [],
+        "type": "RiskCreatorHelperTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 5
+            },
+            "modifiers": [],
+            "name": "parent",
+            "references": [],
+            "type": "grc__Business_Unit__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 8,
+                "line": 9
+            },
+            "modifiers": [],
+            "name": "usr",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 32
+            },
+            "modifiers": [],
+            "name": "risks",
+            "references": [],
+            "type": "LIST"
+        }
+    ]
+}

@@ -1,0 +1,110 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p58000000nl2HAAQ",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p58000000nl2HAAQ",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 13
+            },
+            "modifiers": [
+                "static",
+                "public"
+            ],
+            "name": "createBusinessUnits",
+            "parameters": [
+                {
+                    "name": "nameList",
+                    "type": "LIST"
+                },
+                {
+                    "name": "scoringSchemeId",
+                    "type": "Id"
+                }
+            ],
+            "references": [],
+            "returnType": "LIST",
+            "type": null
+        }
+    ],
+    "name": "BusinessUnitCreationHelper",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 4
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "BusinessUnitCreationHelper",
+        "references": [],
+        "type": "BusinessUnitCreationHelper"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 77,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "nameList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 90,
+                "line": 13
+            },
+            "modifiers": [],
+            "name": "scoringSchemeId",
+            "references": [],
+            "type": "Id"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 15
+            },
+            "modifiers": [],
+            "name": "businessUnitList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "name",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 22
+            },
+            "modifiers": [],
+            "name": "businessUnit",
+            "references": [],
+            "type": "grc__Business_Unit__c"
+        }
+    ]
+}

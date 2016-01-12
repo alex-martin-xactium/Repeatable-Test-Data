@@ -1,0 +1,788 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p58000000ms5sAAA",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p58000000ms5sAAA",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 13
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "setupTestData",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 58
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "setupBUs",
+            "parameters": [],
+            "references": [],
+            "returnType": "Risk__Risk_Assessment__c",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 96
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testScoringSchemeClass",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 110
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testEntryClass",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 124
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testScoreBandEntryClass",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 181
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testImpactScoreEntriesByScoringSchemeId",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 197
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testLikelihoodScoreEntriesByScoringSchemeId",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 213
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testSetEntryValuesUsingRiskAssesmentRatings",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [
+                {
+                    "name": "IsTest"
+                }
+            ],
+            "location": {
+                "column": 36,
+                "line": 234
+            },
+            "modifiers": [
+                "private",
+                "static",
+                "testMethod"
+            ],
+            "name": "testSettingValues",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
+    "name": "ScoringSchemeHelperTest",
+    "namespace": "Risk",
+    "parentClass": "",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 4
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "testDataCreated",
+            "references": [],
+            "type": "Boolean"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 5
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "ss",
+            "references": [],
+            "type": "Risk__Scoring_Scheme__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 34,
+                "line": 6
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "sb",
+            "references": [],
+            "type": "Risk__Score_Band__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 39,
+                "line": 7
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "ic",
+            "references": [],
+            "type": "Risk__Impact_Category__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 8
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "sbe",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 9
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "sbe2",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 10
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "sbe3",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 40,
+                "line": 11
+            },
+            "modifiers": [
+                "private",
+                "static"
+            ],
+            "name": "sbe4",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [
+            {
+                "name": "IsTest"
+            }
+        ],
+        "location": {
+            "column": 15,
+            "line": 2
+        },
+        "modifiers": [
+            "private",
+            "testMethod"
+        ],
+        "name": "ScoringSchemeHelperTest",
+        "references": [],
+        "type": "ScoringSchemeHelperTest"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 21
+            },
+            "modifiers": [],
+            "name": "sb2",
+            "references": [],
+            "type": "Risk__Score_Band__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 24
+            },
+            "modifiers": [],
+            "name": "sb3",
+            "references": [],
+            "type": "Risk__Score_Band__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 23,
+                "line": 27
+            },
+            "modifiers": [],
+            "name": "sb4",
+            "references": [],
+            "type": "Risk__Score_Band__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 33
+            },
+            "modifiers": [],
+            "name": "ic2",
+            "references": [],
+            "type": "Risk__Impact_Category__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 36
+            },
+            "modifiers": [],
+            "name": "ic3",
+            "references": [],
+            "type": "Risk__Impact_Category__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 39
+            },
+            "modifiers": [],
+            "name": "ic4",
+            "references": [],
+            "type": "Risk__Impact_Category__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 59
+            },
+            "modifiers": [],
+            "name": "user",
+            "references": [],
+            "type": "User"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 60
+            },
+            "modifiers": [],
+            "name": "bu",
+            "references": [],
+            "type": "grc__Business_Unit__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 61
+            },
+            "modifiers": [],
+            "name": "risk",
+            "references": [],
+            "type": "grc__Risk__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 62
+            },
+            "modifiers": [],
+            "name": "ra",
+            "references": [],
+            "type": "Risk__Risk_Assessment__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 21,
+                "line": 67
+            },
+            "modifiers": [],
+            "name": "theGroups",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 69
+            },
+            "modifiers": [],
+            "name": "group1",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 15,
+                "line": 70
+            },
+            "modifiers": [],
+            "name": "group2",
+            "references": [],
+            "type": "Group"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 43,
+                "line": 103
+            },
+            "modifiers": [],
+            "name": "testScoringScheme",
+            "references": [],
+            "type": "ScoringScheme"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 22,
+                "line": 117
+            },
+            "modifiers": [],
+            "name": "jusList",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 118
+            },
+            "modifiers": [],
+            "name": "testEntry",
+            "references": [],
+            "type": "Entry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 131
+            },
+            "modifiers": [],
+            "name": "scoreBandEntry",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 136
+            },
+            "modifiers": [],
+            "name": "testScoreBandEntry",
+            "references": [],
+            "type": "ScoreBandEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 153
+            },
+            "modifiers": [],
+            "name": "scoreBandEntry2",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 157
+            },
+            "modifiers": [],
+            "name": "testScoreBandEntry2",
+            "references": [],
+            "type": "ScoreBandEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 162
+            },
+            "modifiers": [],
+            "name": "scoreBandEntry3",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 166
+            },
+            "modifiers": [],
+            "name": "testScoreBandEntry3",
+            "references": [],
+            "type": "ScoreBandEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 29,
+                "line": 171
+            },
+            "modifiers": [],
+            "name": "scoreBandEntry4",
+            "references": [],
+            "type": "Risk__Score_Band_Entry__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 175
+            },
+            "modifiers": [],
+            "name": "testScoreBandEntry4",
+            "references": [],
+            "type": "ScoreBandEntry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 188
+            },
+            "modifiers": [],
+            "name": "scoringHelper",
+            "references": [],
+            "type": "ScoringSchemeHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 191
+            },
+            "modifiers": [],
+            "name": "testImpacts",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 204
+            },
+            "modifiers": [],
+            "name": "scoringHelper",
+            "references": [],
+            "type": "ScoringSchemeHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 207
+            },
+            "modifiers": [],
+            "name": "testLikelihoods",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 219
+            },
+            "modifiers": [],
+            "name": "riskAssessmentRatingsForMapping",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 220
+            },
+            "modifiers": [],
+            "name": "riskAssessment",
+            "references": [],
+            "type": "Risk__Risk_Assessment__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 221
+            },
+            "modifiers": [],
+            "name": "rar",
+            "references": [],
+            "type": "Risk__Risk_Assessment_Rating__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 225
+            },
+            "modifiers": [],
+            "name": "scoringHelper",
+            "references": [],
+            "type": "ScoringSchemeHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 227
+            },
+            "modifiers": [],
+            "name": "testLikelihoods",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 230
+            },
+            "modifiers": [],
+            "name": "testEntries",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 38,
+                "line": 240
+            },
+            "modifiers": [],
+            "name": "riskAssessmentRatingsForMapping",
+            "references": [],
+            "type": "LIST"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 25,
+                "line": 241
+            },
+            "modifiers": [],
+            "name": "riskAssessment",
+            "references": [],
+            "type": "Risk__Risk_Assessment__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 242
+            },
+            "modifiers": [],
+            "name": "rar",
+            "references": [],
+            "type": "Risk__Risk_Assessment_Rating__c"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 26,
+                "line": 246
+            },
+            "modifiers": [],
+            "name": "scoringHelper",
+            "references": [],
+            "type": "ScoringSchemeHelper"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 44,
+                "line": 248
+            },
+            "modifiers": [],
+            "name": "testLikelihoods",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 47,
+                "line": 251
+            },
+            "modifiers": [],
+            "name": "testEntries",
+            "references": [],
+            "type": "Map"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 252
+            },
+            "modifiers": [],
+            "name": "entry",
+            "references": [],
+            "type": "Entry"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 35,
+                "line": 282
+            },
+            "modifiers": [],
+            "name": "rarEdited",
+            "references": [],
+            "type": "Risk__Risk_Assessment_Rating__c"
+        }
+    ]
+}

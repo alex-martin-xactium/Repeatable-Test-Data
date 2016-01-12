@@ -1,0 +1,313 @@
+{
+    "constructors": [],
+    "externalReferences": [],
+    "id": "01p58000000nzWsAAI",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p58000000nzWsAAI",
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 26
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getProductName",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 34
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "getProductArea",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 27,
+                "line": 42
+            },
+            "modifiers": [
+                "virtual",
+                "public"
+            ],
+            "name": "getExceptionString",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 30,
+                "line": 55
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getPageMessage",
+            "parameters": [],
+            "references": [],
+            "returnType": "Message",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 17,
+                "line": 62
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "addPageMessage",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 19,
+                "line": 76
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "getLimitValue",
+            "parameters": [],
+            "references": [],
+            "returnType": "String",
+            "type": null
+        }
+    ],
+    "name": "DataGeneratorException",
+    "namespace": null,
+    "parentClass": "Exception",
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 31,
+                "line": 8
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "severity",
+            "references": [],
+            "type": "Severity"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 10
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "QUERYLIMIT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 11
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "DMLROWSLIMIT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 12
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "HEAPSIZELIMITS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 13
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "QUERYRETURNLIMITS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 14
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "AGGQUERYLIMIT",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 15
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "CALLOUTS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 16
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "CPUTIME",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 17
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "DMLSTMTS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 18
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "FUTURECALLS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 19
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "QUERYLOCATORROWS",
+            "references": [],
+            "type": "String"
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 32,
+                "line": 20
+            },
+            "modifiers": [
+                "static",
+                "public",
+                "final"
+            ],
+            "name": "OUTOF",
+            "references": [],
+            "type": "String"
+        }
+    ],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 35,
+            "line": 6
+        },
+        "modifiers": [
+            "virtual",
+            "public",
+            "with sharing"
+        ],
+        "name": "DataGeneratorException",
+        "references": [],
+        "type": "DataGeneratorException"
+    },
+    "variables": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 16,
+                "line": 77
+            },
+            "modifiers": [],
+            "name": "limitValue",
+            "references": [],
+            "type": "String"
+        }
+    ]
+}
