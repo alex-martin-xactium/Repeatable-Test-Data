@@ -10,23 +10,26 @@ public with sharing class BusinessUnitCreationHelper {
 	 * @return List of created business units, returned to be colated into one list and inserted in one go. Returns a blank list 
 	 * if namelist is empty or null. 
 	 */
-	public static List<grc__Business_Unit__c> createBusinessUnits(List<String> nameList, Id scoringSchemeId) {
+	public static List<grc__Business_Unit__c> createBusinessUnits(Map<Id, List<String>> parametersMap) {
+		
+		if(parametersMap == null || parametersMap.keySet().size() == 0) {
+			throw new BadParameterException('Incorrect parameters passed');
+		}
 		
 		List<grc__Business_Unit__c> businessUnitList = new List<grc__Business_Unit__c>();
-		
-		if(nameList == null || nameList.size() == 0) {
-			return businessUnitList;
+
+		for(Id scoringSchemeId : parametersMap.keySet()) {
+			for(String name : parametersMap.get(scoringSchemeId)) {
+				grc__Business_Unit__c businessUnit = new grc__Business_Unit__c();
+				businessUnit.Name = name; 
+				businessUnit.Risk__Sharing_Group_Name__c = name;
+				businessUnit.Risk__Scoring_Scheme__c = scoringSchemeId;
+				
+				businessUnitList.add(businessUnit);				
+			}
 		}
 		
-		for(String name : nameList) {
-			grc__Business_Unit__c businessUnit = new grc__Business_Unit__c();
-			businessUnit.Name = name; 
-			businessUnit.Risk__Sharing_Group_Name__c = name;
-			businessUnit.Risk__Scoring_Scheme__c = scoringSchemeId;
-			
-			businessUnitList.add(businessUnit);
-		}
-		
+		insert businessUnitList;
 		return businessUnitList;
 	}
 }

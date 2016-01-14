@@ -9,10 +9,11 @@ public with sharing class ScoringSchemeHelper {
 	 * @param  Names of the scorebands. This also represents how many scorebands there should be. 
 	 * @param  Score band colours. Index out of bands if this list if smaller than the scoreBandNames.
 	 */
-	public static void createScoringScheme(List<List<String>> heatmap, List<String> scoreBandNames, List<String> scoreBandColours) {
+	public static Id createScoringScheme(List<List<String>> heatmap, List<String> scoreBandNames, List<String> scoreBandColours) {
 		Risk__Scoring_Scheme__c scoringScheme = new Risk__Scoring_Scheme__c();
 		scoringScheme.Name = 'Scoring Scheme';
 		scoringScheme.Risk__Multiply_Impact_Likelihood__c = true;
+		
 		
 		//first insert, the scoring scheme. 
 		insert scoringScheme;
@@ -32,7 +33,7 @@ public with sharing class ScoringSchemeHelper {
 		
 		integer numberOfScoreBands;
 		//determine if custom score bands are defined, otherwise we use a default 5x5 grid 
-		if(scoreBandNames ==null ) {
+		if(scoreBandNames ==null || scoreBandNames.size() == 0) {
 			scoreBandNames = new List<String> { 'V.Low', 'Low', 'Moderate', 'High', 'V.High' };
 			numberOfScoreBands = 5;
 		} else {
@@ -40,9 +41,14 @@ public with sharing class ScoringSchemeHelper {
 		}
 		
 		//check if custom score band colours are passed. If not, use predefined defaults. 
-		if(scoreBandColours == null) {
+		if(scoreBandColours == null || scoreBandColours.size() == 0) {
 			scoreBandColours = new List<String> { 'Lime Green', 'Green', 'Yellow', 'Orange', 'Red' };
 		}
+		
+		if(scoreBandNames.size() > scoreBandColours.size()) {
+			throw new BadParameterException('There are more score bands than colours');
+		}
+				
 		List<Risk__Score_Band__c> scoreBands = new List<Risk__Score_Band__c>();
 		List<Risk__Score_Band__c> impactScoreBands = new List<Risk__Score_Band__c>();
 		List<Risk__Score_Band_Entry__c> scoreBandEntries = new List<Risk__Score_Band_Entry__c>();
@@ -133,5 +139,7 @@ public with sharing class ScoringSchemeHelper {
 		    }
 		}		
 		insert ratingInfo;
+		
+		return scoringScheme.Id;
 	}
 }
