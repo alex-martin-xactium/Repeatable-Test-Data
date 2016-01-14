@@ -2,7 +2,7 @@
 	
 	@isTest static void testCreateRiskAssessment() {
 		
-		Id ssId = ScoringSchemeHelper.createScoringScheme(null, null, null);
+		Id ssId = ScoringSchemeCreatorHelper.createScoringScheme(null, null, null);
 		
 		grc__Business_Unit__c parent = new grc__Business_Unit__c();
 		parent.Name = 'parent';

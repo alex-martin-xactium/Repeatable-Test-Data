@@ -1,10 +1,10 @@
-@isTest public with sharing class ScoringSchemeHelperTest {
+@isTest public with sharing class ScoringSchemeCreatorHelperTest {
 	
 	@isTest static void testBlankCreateScoringScheme() {
 		List<Risk__Scoring_Scheme__c> ss = [Select Id from Risk__Scoring_Scheme__c];
 		System.assertEquals(0, ss.size(), 'Scoring scheme already exists');
 		
-		ScoringSchemeHelper.createScoringScheme(null, null, null);
+		ScoringSchemeCreatorHelper.createScoringScheme(null, null, null);
 		
 		ss = [Select Id from Risk__Scoring_Scheme__c];
 		System.assertNotEquals(null, ss, 'Scoring Scheme doesnt exist');
@@ -73,7 +73,7 @@
 		List<Risk__Scoring_Scheme__c> ss = [Select Id from Risk__Scoring_Scheme__c];
 		System.assertEquals(0, ss.size(), 'Scoring scheme already exists');
 		
-		ScoringSchemeHelper.createScoringScheme(null, new List<String> { 'low', 'med', 'high' }, new List<String> { 'Lime Green', 'Green', 'Yellow' });
+		ScoringSchemeCreatorHelper.createScoringScheme(null, new List<String> { 'low', 'med', 'high' }, new List<String> { 'Lime Green', 'Green', 'Yellow' });
 		
 		ss = [Select Id from Risk__Scoring_Scheme__c];
 		System.assertNotEquals(null, ss, 'Scoring Scheme doesnt exist');

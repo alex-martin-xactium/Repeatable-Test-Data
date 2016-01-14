@@ -1,7 +1,7 @@
 /*
  * @description helper class to create a list of business units
  */
-public with sharing class BusinessUnitCreationHelper {
+public with sharing class BusinessUnitCreatorHelper {
 	
 	/**
 	 * @description function to create business units, based on a list of names associated to one scoring scheme. 

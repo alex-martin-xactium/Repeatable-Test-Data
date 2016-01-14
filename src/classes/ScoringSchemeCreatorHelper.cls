@@ -1,7 +1,7 @@
 /**
  * @description Scoring scheme helper that lets you create a dynamic scoring scheme.
  */
-public with sharing class ScoringSchemeHelper {
+public with sharing class ScoringSchemeCreatorHelper {
 	
 	/**
 	 * @description simple method to create the scoring scheme and insert it
