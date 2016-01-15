@@ -27,6 +27,7 @@ public with sharing class RiskAssessmentCreatorHelper {
 		for(grc__Risk__c risk : [Select Id, Name, grc__Business_Unit__r.Risk__Scoring_Scheme__c from grc__Risk__c]) {
 			Risk__Risk_Assessment__c assessment = new Risk__Risk_Assessment__c();
 			assessment.Risk__Risk__c = risk.Id;
+			//this prevents us having to requery the assessment just to get the relationships
 			assessment.putSObject('Risk__Risk__r', risk);
 			assessmentList.add(assessment);
 			
@@ -71,6 +72,12 @@ public with sharing class RiskAssessmentCreatorHelper {
 					}
 					String category = pair.get(0);
 					
+					//Likelihood doesn't have an impact category record, so it's allowed through. But all others must have a record
+					if(!category.equalsIgnoreCase('likelihood') && !impactCategoryMap.containsKey(category.toLowerCase())) {
+						Database.rollback(sp);
+						throw new BadParameterException('Category specified does not exist: ' + category);
+					}
+					
 					integer sbeValue;
 					try {
 						sbeValue = integer.valueOf(pair.get(1));
@@ -90,7 +97,7 @@ public with sharing class RiskAssessmentCreatorHelper {
 			insert assessmentEntryList;
 		} catch(Exception e) {
 			Database.rollBack(sp);
-			throw new AppException(e);
+			throw e;
 		}
 		
 	}

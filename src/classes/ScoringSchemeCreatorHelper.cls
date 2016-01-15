@@ -14,7 +14,7 @@ public with sharing class ScoringSchemeCreatorHelper {
 		scoringScheme.Name = 'Scoring Scheme';
 		scoringScheme.Risk__Multiply_Impact_Likelihood__c = true;
 		
-		
+		Savepoint sp = Database.setSavePoint();
 		//first insert, the scoring scheme. 
 		insert scoringScheme;
 
@@ -29,7 +29,13 @@ public with sharing class ScoringSchemeCreatorHelper {
 		t.Risk__Scoring_Scheme__c = scoringScheme.Id;
 		
 		//then we insert the impact categories. 
-		insert new List<Risk__Impact_Category__c> { c, t };
+		try {
+			insert new List<Risk__Impact_Category__c> { c, t };
+		} catch(Exception e) {
+			Database.rollBack(sp);
+			throw e;
+		}
+		
 		
 		integer numberOfScoreBands;
 		//determine if custom score bands are defined, otherwise we use a default 5x5 grid 
@@ -46,6 +52,7 @@ public with sharing class ScoringSchemeCreatorHelper {
 		}
 		
 		if(scoreBandNames.size() > scoreBandColours.size()) {
+			Database.rollBack(sp);
 			throw new BadParameterException('There are more score bands than colours');
 		}
 				
@@ -75,7 +82,13 @@ public with sharing class ScoringSchemeCreatorHelper {
 		//insert both lists. Could combine into one list?
 		List<Risk__Score_Band__c> combinedScoreBands = new List<Risk__Score_Band__c>(scoreBands);
 		combinedScoreBands.addAll(impactScoreBands);
-		insert combinedScoreBands;
+		
+		try {
+			insert combinedScoreBands;
+		} catch(Exception e) {
+			Database.rollBack(sp);
+			throw e;
+		}
 		
 		for(Risk__Score_Band__c sb : combinedScoreBands) {
 			
@@ -104,9 +117,14 @@ public with sharing class ScoringSchemeCreatorHelper {
 			}			
 		}
 		
-		insert scoreBandEntries;
+		try {
+			insert scoreBandEntries;
+		} catch(Exception e) {
+			Database.rollBack(sp);
+			throw e;
+		}
 
-		List<Risk__Rating_Info__c> ratingInfo = new List<Risk__Rating_Info__c>();
+		List<Risk__Rating_Info__c> ratingInfoList = new List<Risk__Rating_Info__c>();
 		
 		
 		//if a custom heatmap isn't specified, use the default.
@@ -127,7 +145,20 @@ public with sharing class ScoringSchemeCreatorHelper {
 				Risk__Score_Band__c sb = scoreBands.get(x);
 				
 		        Risk__Rating_Info__c ri1 = new Risk__Rating_Info__c();
-		        ri1.Risk__Colour__c = heatmap.get(y).get(x);
+				
+				if(heatmap.size() <= y) {
+					//save ourselves by setting it to black.
+					ri1.Risk__Colour__c = '#000000';
+				} else {
+					if(heatmap.get(y).size() <= x) {
+						//save ourselves by setting it to black.
+						ri1.Risk__Colour__c = '#000000';
+					} else {
+						//Correct colours found
+						ri1.Risk__Colour__c = heatmap.get(y).get(x);
+					}
+				}
+				
 		        ri1.Risk__Impact__c = isb.Name;
 		        ri1.Risk__Likelihood__c = sb.Name;
 		        ri1.Risk__Impact_rating__c = isb.Risk__Rating__c;
@@ -135,10 +166,16 @@ public with sharing class ScoringSchemeCreatorHelper {
 		        ri1.Risk__Scoring_Scheme__c = scoringScheme.Id;
 		        ri1.Risk__Overall_rating__c = isb.Risk__Rating__c * sb.Risk__Rating__c;
 
-		        ratingInfo.add(ri1);
+		        ratingInfoList.add(ri1);
 		    }
-		}		
-		insert ratingInfo;
+		}	
+		
+		try {
+			insert ratingInfoList;
+		} catch(Exception e) {
+			Database.rollBack(sp);
+			throw e;
+		}
 		
 		return scoringScheme.Id;
 	}

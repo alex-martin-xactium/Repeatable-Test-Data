@@ -3,45 +3,37 @@
  * Associates business units to each other before updating them in the database. 
  */
 public with sharing class BusinessUnitRelationshipHelper {
-	
-	private static final String key = 'relationships';
-	
+
 	/**
 	 * @description function to create the links between business units. Uses names in a comma seperate string
 	 * to indicate relation. 
 	 * @param  Parameter map. Must have a single parameter of key relationships that contains the pair values
 	 * @return returns a list of business units to update, or an empty list if there's nothing to update. 
 	 */
-	public static List<grc__Business_Unit__c> updateRelationships(Map<String, String> relationships) {
+	public static List<grc__Business_Unit__c> updateRelationships(Map<String, String> parameters) {
 		
-		if(relationships == null || !relationships.containsKey(key)) {
+		if(parameters == null || parameters.keySet().size() == 0) {
 			throw new BadParameterException('No parameters passed');
 		}
 		
 		Set<String> businessUnitNames = new Set<String>();
 		Map<String, String> childToParentMap = new Map<String, String>();
 		Map<String, grc__Business_Unit__c> businessUnitMap = new Map<String, grc__Business_Unit__c>();
-		
-		List<String> pairs = relationships.get(key).split(',');
-		if(pairs.size() == 0) {
-			//don't call this function if you aren't going to define any relationships. 
-			throw new BadParameterException('No relationships are defined in the parameters');
-		}
-		
-		for(String pair : pairs) {
-			List<String> pairValue = pair.split(':');
-			if(pairValue.size() == 2) {
-				
-				//Build a list of business unit names to query for. 
-				businessUnitNames.add(pairValue.get(0));
-				businessUnitNames.add(pairValue.get(1));
-				
-				//Store the relationship. 
-				//0 is child, 1 is parent
-				childToParentMap.put(pairValue.get(0), pairValue.get(1));
-			} else {
-				throw new BadParameterException('Incorrect parameters passed');
+
+		for(String childBuName : parameters.keySet()) {
+			String parentBuName = parameters.get(childBuName);
+			
+			if(parentBuName == null || childBuName == null) {
+				throw new BadParameterException('Incorrect parameters passed, child or parent is null');
 			}
+			//Build a list of business unit names to query for. 
+			businessUnitNames.add(childBuName);
+			businessUnitNames.add(parentBuName);
+			
+			//Store the relationship. 
+			//0 is child, 1 is parent
+			childToParentMap.put(childBuName, parentBuName);
+
 		}
 		
 		List<grc__Business_Unit__c> businessUnits = getNamedBusinessUnits(businessUnitNames);

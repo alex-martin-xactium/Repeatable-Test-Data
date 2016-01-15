@@ -30,34 +30,70 @@ public with sharing class BusinessUnitRelationshipHelperTest {
         }
 		
 		Map<String, String> parameters = new Map<String, String>();
-		String csvString = 'child1:parent,child2:parent,child11:child1,child21:child2';
-		parameters.put('wrong key', 'child1:parent,child2:parent,child11:child1,child21:child2');
+		parameters.put('child1', 'parent');
+		parameters.put('child2', 'parent');
+		parameters.put('child11', 'child1');
+		parameters.put('child21', 'child2');
 		
 		List<grc__Business_Unit__c> results = new List<grc__Business_Unit__c>();
 		
 		//First test, no parameters.
-		results = BusinessUnitRelationshipHelper.updateRelationships(null);
-		//no exceptions hopefully
-		System.assertNotEquals(null, results);
-		System.assertEquals(0, results.size());
+		try {
+			results = BusinessUnitRelationshipHelper.updateRelationships(null);
+			System.assert(false,'Expected an exception');
+		} catch(BadParameterException e) {
+			System.assertEquals('No parameters passed', e.getMessage(), 'Wrong exception thrown');
+		} catch(Exception e) {
+			System.assert(false,'Expected an exception');
+		}
+
 		//Empty parameters
-		BusinessUnitRelationshipHelper.updateRelationships(new Map<String, String>());
-		//no exceptions hopefully
-		System.assertNotEquals(null, results);
-		System.assertEquals(0, results.size());
+		try {
+			results = BusinessUnitRelationshipHelper.updateRelationships(new Map<String, String>());
+			System.assert(false,'Expected an exception');
+		} catch(BadParameterException e) {
+			System.assertEquals('No parameters passed', e.getMessage(), 'Wrong exception thrown');
+		} catch(Exception e) {
+			System.assert(false,'Expected an exception');
+		}
+
+		//wrong key test
+		try {
+			results = BusinessUnitRelationshipHelper.updateRelationships(new Map<String, String> { 'missing bu' => 'missing bu' });
+			System.assert(false,'Expected an exception');         
+		} catch(BadParameterException e) {
+			System.assertEquals('Child or parent business unit don\'t exist', e.getMessage(), 'Wrong exception thrown');
+		} catch(Exception e) {
+			System.assert(false,'Expected an exception');
+		}
+
+		try {
+			results = BusinessUnitRelationshipHelper.updateRelationships(new Map<String, String> { 'child1' => 'missing parent' }); 
+			System.assert(false,'Expected an exception');
+		} catch(BadParameterException e) {
+			System.assertEquals('Child or parent business unit don\'t exist', e.getMessage(), 'Wrong exception thrown');
+		} catch(Exception e) {
+			System.assert(false,'Expected an exception');
+		}
 		
-		//proper test
-		results = BusinessUnitRelationshipHelper.updateRelationships(parameters);
-		System.assertNotEquals(null, results);
-		System.assertEquals(0, results.size());		
-		
-		parameters.put('relationships', 'very wrong string');
-		
-		results = BusinessUnitRelationshipHelper.updateRelationships(parameters);
-		System.assertNotEquals(null, results);
-		System.assertEquals(0, results.size());		
-		
-		parameters.put('relationships', csvString);
+		try {
+			results = BusinessUnitRelationshipHelper.updateRelationships(new Map<String, String> { 'child1' => null }); 
+			System.assert(false,'Expected an exception');
+		} catch(BadParameterException e) {
+			System.assertEquals('Incorrect parameters passed, child or parent is null', e.getMessage(), 'Wrong exception thrown');
+		} catch(Exception e) {
+			System.assert(false,'Expected an exception');
+		}		
+
+		try {
+			results = BusinessUnitRelationshipHelper.updateRelationships(new Map<String, String> { 'missing child' => 'parent' });
+			System.assert(false,'Expected an exception');
+		} catch(BadParameterException e) {
+			System.assertEquals('Child or parent business unit don\'t exist', e.getMessage(), 'Wrong exception thrown');
+		} catch(Exception e) {
+			System.assert(false,'Expected an exception');
+		}				
+
 		results = BusinessUnitRelationshipHelper.updateRelationships(parameters);	
 		
 		System.assertNotEquals(null, results);

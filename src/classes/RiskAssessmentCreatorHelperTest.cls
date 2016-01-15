@@ -61,6 +61,24 @@
 			System.assert(false, 'Wrong type of exception thrown' + e.getMessage() + ' :: ' + e.getStackTraceString());
 		}
 		
+		try {
+			RiskAssessmentCreatorHelper.createRiskAssessment(new Map<String, List<String>> { 'x' => new List<String> { 'hooha:2' } });
+			System.assert(false, 'Exception should be thrown');
+		} catch(BadParameterException bp ) {
+			System.assertEquals('Category specified does not exist: hooha', bp.getMessage());
+		} catch(Exception e) {
+			System.assert(false, 'Wrong type of exception thrown' + e.getMessage() + ' :: ' + e.getStackTraceString());
+		}		
+		
+		try {
+			RiskAssessmentCreatorHelper.createRiskAssessment(new Map<String, List<String>> { 'x' => new List<String> { 'likelihood:2' } });
+			System.assert(false, 'Exception should be thrown');
+		} catch(BadParameterException bp ) {
+			System.assertEquals('Missing or incorrect parameters passed', bp.getMessage());
+		} catch(Exception e) {
+			System.assert(false, 'Wrong type of exception thrown' + e.getMessage() + ' :: ' + e.getStackTraceString());
+		}		
+		
 		assessmentList = [Select Id from Risk__Risk_Assessment__c];
 		System.assertEquals(0, assessmentList.size());
 		
@@ -112,6 +130,31 @@
 		assessmentList = [Select Id from Risk__Risk_Assessment__c];
 		System.assertEquals(0, assessmentList.size());		
 		
+	}
+	
+	//We hit governor limits
+	@isTest static void testCreateRiskAssessment2() {
+		Id ssId = ScoringSchemeCreatorHelper.createScoringScheme(null, null, null);
+		
+		grc__Business_Unit__c parent = new grc__Business_Unit__c();
+		parent.Name = 'parent';
+		parent.Risk__Sharing_Group_Name__c = 'parent';	
+		parent.Risk__Scoring_Scheme__c = ssId;
+		
+		User usr = [Select Id from User where Id = :UserInfo.getUserId()];
+		System.RunAs(usr)
+		{
+			Test.startTest();
+			insert new List<grc__Business_Unit__c> { parent };
+			Test.stopTest();
+		}
+		
+		grc__Risk__c risk = new grc__Risk__c();
+		risk.Name = 'risk1';
+		risk.grc__Business_Unit__c = parent.Id;
+		
+		insert risk;
+		
 		try {
 			RiskAssessmentCreatorHelper.createRiskAssessment(new Map<String, List<String>> { 'residual' => new List<String> { 'likelihood:1', 'Cost:2', 'Time:3' } });
 			Risk__Risk_Assessment__c assessment = [Select Id, Name, (Select Id, Name, Risk__Mitigation__c, Risk__Category__c, Risk__Impact_Category__c, Risk__Value__c, Risk__Best_Case__c, Risk__Worst_Case__c from Risk__Risk_Assessment_Ratings__r) from Risk__Risk_Assessment__c];
@@ -147,8 +190,7 @@
 			
 		} catch(Exception e) {
 			System.assert(false, 'Wasn\'t expecting an exception' + e.getMessage() + ' :: ' + e.getStackTraceString());
-		}		
-		
+		}	
 	}
 	
 }
