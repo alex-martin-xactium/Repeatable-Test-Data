@@ -9,7 +9,8 @@ public with sharing class RiskAssessmentCreatorHelper {
 	/**
 	 * @description creates and inserts a risk assessment and the risk assessment ratings. Database save point is used here to prevent risk assessment records
 	 *              existing while the ratings fail. 
-	 * @param  Parameter map. If this is missing, it will throw a BadParameter exception. If this is poorly formatted
+	 * @param  Parameter map. The key is mitigation, followed by a list of strings with impact category to score band value.
+	 *         If this is missing, it will throw a BadParameter exception. If this is poorly formatted
 	 *         if will throw a bad parameter exception. Creates assessments for every risk in the org (Gary Burgin)
 	 */
 	public static void createRiskAssessment(Map<String, List<String>> parameters) {
@@ -27,6 +28,7 @@ public with sharing class RiskAssessmentCreatorHelper {
 		for(grc__Risk__c risk : [Select Id, Name, grc__Business_Unit__r.Risk__Scoring_Scheme__c from grc__Risk__c]) {
 			Risk__Risk_Assessment__c assessment = new Risk__Risk_Assessment__c();
 			assessment.Risk__Risk__c = risk.Id;
+			assessment.Risk__Risk_Assessment_Date__c = System.now();
 			//this prevents us having to requery the assessment just to get the relationships
 			assessment.putSObject('Risk__Risk__r', risk);
 			assessmentList.add(assessment);
@@ -51,13 +53,14 @@ public with sharing class RiskAssessmentCreatorHelper {
 		}
 		
 		//build impact category map so we can reference it down below. Need each IC for each ScoringScheme we're going to use. 
-		for(Risk__Impact_Category__c impactCategory : [Select Id, Name from Risk__Impact_Category__c where Risk__Scoring_Scheme__c in :scoringSchemeMap.keySet()]) {
+		for(Risk__Impact_Category__c impactCategory : [Select Id, Name, Risk__Type_of_Risk__c from Risk__Impact_Category__c where Risk__Scoring_Scheme__c in :scoringSchemeMap.keySet()]) {
 			impactCategoryMap.put(impactCategory.Name.toLowerCase(), impactCategory);
 		}
 		
 		//Mark a save point in the database.
 		sp = Database.setSavepoint();
 		insert assessmentList;
+		
 		
 		for(Risk__Risk_Assessment__c assessment : assessmentList) {
 			
@@ -122,6 +125,9 @@ public with sharing class RiskAssessmentCreatorHelper {
 		Risk__Risk_Assessment_Rating__c rating = new Risk__Risk_Assessment_Rating__c();
 		rating.Risk__Risk_Assessment__c = riskAssessmentId;
 		rating.Risk__Mitigation__c = mitigation;
+		rating.Risk__Type_Saved_By__c = 'Record Creator';
+		rating.Risk__Band__c = String.valueOf(sbeValue);
+		
 		
 		if(impactCategory != null) {
 			if(scoringSchemeMap.get(scoringSchemeId).get(impactCategory.Name).size() <= (sbeValue-1)) {
@@ -155,6 +161,8 @@ public with sharing class RiskAssessmentCreatorHelper {
 		if(impactCategory != null) {
 			rating.Risk__Impact_Category__c = impactCategory.Id;
 			rating.Risk__Category__c = impactCategory.Name;
+			rating.Risk__Type_of_Risk__c = impactCategory.Risk__Type_of_Risk__c;
+
 		} else {
 			rating.Risk__Category__c = 'Likelihood';
 		}
